@@ -1,9 +1,11 @@
 ﻿using Librarian.ApiPortal.Auth;
+using Librarian.ApiPortal.Exceptions;
 using Librarian.ApiPortal.Extensions;
 using Librarian.ApiPortal.Models;
 using Librarian.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Librarian.ApiPortal.Controllers
@@ -29,7 +31,9 @@ namespace Librarian.ApiPortal.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(SearchRequest searchRequest)
         {
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            EnsureMaintenance();
 
             _catalogService.SearchTitleTerm = searchRequest.TitleTerm;
             _catalogService.SearchAuthorTerm = searchRequest.AuthorTerm;
@@ -51,6 +55,14 @@ namespace Librarian.ApiPortal.Controllers
                 return Ok(token);
             else
                 return Unauthorized();
+        }
+
+        private static void EnsureMaintenance()
+        {
+            var now = DateTime.Now;
+
+            if (now.Hour == 0 && now.Minute <= 33)
+                throw new ExternalException("Maintenance", "The daily maintenance is being performed on the service");
         }
     }
 }

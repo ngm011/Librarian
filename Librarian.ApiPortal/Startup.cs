@@ -1,4 +1,5 @@
 using Librarian.ApiPortal.Auth;
+using Librarian.ApiPortal.Middlewares;
 using Librarian.Data;
 using Librarian.Services;
 using Librarian.Services.GoogleBooks;
@@ -76,6 +77,7 @@ namespace Librarian.ApiPortal
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
