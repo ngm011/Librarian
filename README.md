@@ -24,3 +24,7 @@ Testing of API Portal
   GET /Library?titleTerm=microsoft&authorTerm=William HTTP/1.1
   Host: localhost:44345
   Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEyMjEyMTEyIiwibmJmIjoxNjM5NzIxMTE5LCJleHAiOjE2Mzk3MjQ3MTksImlhdCI6MTYzOTcyMTExOX0.Gp6xpdz_1rLokDQSqUKBUmkIZL2APETURzYOhOlHYCI
+
+Setup of Kiosk Client
+
+1. In app.config, change a) Endpoint to match your IIS/IIS Express URL and port
