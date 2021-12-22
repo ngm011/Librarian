@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="BackgroundBrush"
+                     Color="{DynamicResource BackgroundColor}" />
+    <SolidColorBrush x:Key="ThemeBrush"
+                     Color="{DynamicResource ThemeColor}" />
+    <SolidColorBrush x:Key="LightGrayBrush"
+                     Color="{DynamicResource LightGrayColor}" />
+    <SolidColorBrush x:Key="TextBoxFocusBrush"
+                     Color="{DynamicResource TextBoxFocusColor}" />
+    <SolidColorBrush x:Key="DisabledVisualElementBrush"
+                     Color="{DynamicResource DisabledVisualElementColor}" />
+    <SolidColorBrush x:Key="RedCategoryBrush"
+                     Color="{DynamicResource RedCategoryColor}" />
+    <SolidColorBrush x:Key="ActiveTileBrush"
+                     Color="{DynamicResource ActiveTileColor}" />
+    <SolidColorBrush x:Key="AlternateForegroundBrush"
+                     Color="{DynamicResource AlternateForegroundColor}" />
+
+    <DrawingBrush x:Key="ThemeBackgroundVectorBrush"
+                  Stretch="UniformToFill"
+                  Opacity="0.1">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Geometry="{DynamicResource BackgroundBubblesGeometry}"
+                             Brush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}">
+
+            </GeometryDrawing>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+</ResourceDictionary>

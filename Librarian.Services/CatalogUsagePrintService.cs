@@ -29,8 +29,6 @@ namespace Librarian.Services
         {
             var ctx = _catalogContextFactory.CreateDbContext();
 
-            throw new CatalogUsagePrintServiceTrackingException("tst", null);
-
             ctx.UsagePrints?.Add(
                 new CatalogUsagePrintDto()
                 {

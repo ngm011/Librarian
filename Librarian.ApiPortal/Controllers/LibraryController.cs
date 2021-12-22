@@ -61,7 +61,7 @@ namespace Librarian.ApiPortal.Controllers
         {
             var now = DateTime.Now;
 
-            if (now.Hour == 0 && now.Minute <= 33)
+            if (now.Hour == 0 && now.Minute <= 30)
                 throw new ExternalException("Maintenance", "The daily maintenance is being performed on the service");
         }
     }

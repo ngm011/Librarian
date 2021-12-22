@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Librarian.KioskClient.Hub.Views.HubView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ctrl="clr-namespace:Librarian.KioskClient.Controls"
+             xmlns:catvm="clr-namespace:Librarian.KioskClient.Catalog.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ctrl:DynamicContentControl AsymmetricGroup="Main"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="60,20,0,5">
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock Style="{StaticResource Label}"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Stretch"
+                           Text="WELCOME TO LIBRARIAN" />
+                <TextBlock Style="{StaticResource Label}"
+                           FontSize="22"
+                           HorizontalAlignment="Stretch"
+                           Text="Please pick your catalog search method" />
+            </StackPanel>
+        </ctrl:DynamicContentControl>
+
+        <ctrl:DynamicContentControl AsymmetricGroup="Main"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+            <StackPanel>
+                <ctrl:CircledButton Content="{StaticResource BooksGeometry}"
+                                    Width="120"
+                                    Height="120"
+                                    Command="{Binding NavigateToCatalogCommand}"
+                                    CommandParameter="{x:Static catvm:SearchType.ByTitle}" />
+                <TextBlock Style="{StaticResource Label}"
+                           Margin="0,10,0,0"
+                           HorizontalAlignment="Center"
+                           Text="BY TITLE" />
+            </StackPanel>
+        </ctrl:DynamicContentControl>
+
+        <ctrl:DynamicContentControl AsymmetricGroup="Main"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+            <StackPanel>
+                <ctrl:CircledButton Content="{StaticResource PencilGeometry}"
+                                    Width="120"
+                                    Height="120"
+                                    Command="{Binding NavigateToCatalogCommand}"
+                                    CommandParameter="{x:Static catvm:SearchType.ByAuthor}" />
+                <TextBlock Style="{StaticResource Label}"
+                           Margin="0,10,0,0"
+                           HorizontalAlignment="Center"
+                           Text="BY AUTHOR" />
+            </StackPanel>
+        </ctrl:DynamicContentControl>
+    </Grid>
+</UserControl>

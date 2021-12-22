@@ -10,7 +10,7 @@ namespace Librarian.Services.GoogleBooks
 {
     public class GoogleBooksCatalogService : ICatalogService
     {
-        private const string Endpoint = "https://www.googleapis.com/books/v1/volumes?q=+intitle:{0}+inauthor:{1}&key={2}";
+        private const string Endpoint = "https://www.googleapis.com/books/v1/volumes?q=+intitle:{0}+inauthor:{1}&maxResults=40&key={2}";
         private readonly string _apiKey;
 
         public GoogleBooksCatalogService(string apiKey)
@@ -32,8 +32,12 @@ namespace Librarian.Services.GoogleBooks
                 try
                 {
                     using (var res = await client.GetAsync(BuildUri()))
+                    {
+                        var t = await res.Content.ReadAsStringAsync();
+
                         bookRes = JsonConvert.DeserializeObject<GoogleBookResponse>(
                             await res.Content.ReadAsStringAsync());
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -46,8 +50,11 @@ namespace Librarian.Services.GoogleBooks
             return new CatalogResult(bookRes.Items.Select(v =>
                 new BookInfo(
                     v.Id ?? "",
+                    v.VolumeInfo?.IndustryIdentifiers?.FirstOrDefault()?.Identifier ?? "",
                     v.VolumeInfo?.Title ?? "",
                     v.VolumeInfo?.Subtitle ?? "",
+                    v.VolumeInfo?.Publisher ?? "",
+                    v.VolumeInfo?.PublishedDate ?? "",
                     v.VolumeInfo?.Authors ?? Array.Empty<string>(),
                     v.VolumeInfo?.ImageLinks?.Thumbnail ?? "")).ToArray());
         }
