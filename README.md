@@ -1,13 +1,15 @@
 # Librarian
 
-Setup of API Portal
+This is demonstration app that consumes Google Books API exposing it via Web API endpoint that's being consumed by MVVM (Model-View-ViewModel) based client. Additionally, there's repository used for API requests telemetry.
+
+## Setup of API Portal
 
 1. In appsettings.json, change a) LibrarianDB connection string b) GoogleApiKey
 2. Set Librarian.ApiPortal as startup project
 3. Invoke :Add-Migration Initial" in Package Manager Console
 4. Invoke "Update-Database" in Package Manager Console
 
-Testing of API Portal
+## Testing of API Portal
 
 5. POST to "https://localhost:[port]/Library/auth" with body set to ApiKey - "12212112":
 
@@ -25,6 +27,6 @@ Testing of API Portal
   Host: localhost:44345
   Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEyMjEyMTEyIiwibmJmIjoxNjM5NzIxMTE5LCJleHAiOjE2Mzk3MjQ3MTksImlhdCI6MTYzOTcyMTExOX0.Gp6xpdz_1rLokDQSqUKBUmkIZL2APETURzYOhOlHYCI
 
-Setup of Kiosk Client
+## Setup of Kiosk Client
 
 1. In app.config, change a) Endpoint to match your IIS/IIS Express URL and port
